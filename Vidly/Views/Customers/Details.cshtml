@@ -1,0 +1,18 @@
+﻿@model Vidly.Models.Customer
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>@Model.CustomerName</h2>
+<ul>
+    <li>@Model.MemershipType.MembershipTypeName</li>
+
+        @if(Model.CustomerBirthGate!=null)
+         {
+            
+          <li>@Model.CustomerBirthGate</li>
+         }
+
+</ul>
+
+

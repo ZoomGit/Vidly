@@ -1,0 +1,41 @@
+﻿@model Vidly.ViewModels.CustomerFormViewModel
+@{
+    ViewBag.Title = "New";
+}
+@if (ViewBag.customer == "edit")
+{
+    <h2>Edit Customer</h2>
+}
+@if (ViewBag.customer == "new")
+{
+    <h2>New Customer</h2>
+}
+
+@using (Html.BeginForm("Save", "Customers"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.CustomerName)
+        @Html.TextBoxFor(m => m.Customer.CustomerName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.CustomerName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.CustomerBirthGate)
+        @Html.TextBoxFor(m => m.Customer.CustomerBirthGate,"{0:d MMM yyyy }", new { @class = "form-control" })
+    </div>
+   
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId,new SelectList(Model.MembershipTypes, "MembershipTypeId", "MembershipTypeName"),"Select MembershipType", new { @class = "form-control" })
+    </div>
+    <div class="checkbox">
+
+        <label>
+            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter) SubscribedToNewsLetter ?
+        </label>
+    </div>
+    @Html.HiddenFor(m =>m.Customer.CustomerId)
+   <button type="submit" class="btn btn btn-primary">Save</button>
+
+
+}
+
